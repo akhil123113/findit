@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindIt — Lost &amp; Found Portal</title>
+    <meta
+      name="description"
+      content="FindIt is the campus lost and found portal. Report lost items, post found items, search for your belongings and connect with the person who found them."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <!-- ------------------------------- hero ------------------------------- -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="hero-badge"><span class="pulse"></span> Trusted by students &amp; staff across campus</span>
+            <h1>Lost Something? <span class="accent">Find It Here!</span></h1>
+            <p class="hero-lead">
+              A single place to report lost belongings, post what you have found, and get
+              reunited with your things — no notice boards, no endless WhatsApp groups.
+            </p>
+
+            <form class="search-bar" id="heroSearch" role="search">
+              <label class="field" for="heroQuery">
+                <span class="sr-only" hidden>Search items</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+                <input
+                  id="heroQuery"
+                  name="q"
+                  type="search"
+                  placeholder="Search a laptop, ID card, wallet, keys…"
+                  autocomplete="off"
+                />
+              </label>
+              <select name="category" id="heroCategory" aria-label="Category">
+                <option value="">All categories</option>
+                <option>Electronics</option>
+                <option>Books</option>
+                <option>ID Cards</option>
+                <option>Wallets</option>
+                <option>Keys</option>
+                <option>Bags</option>
+                <option>Accessories</option>
+                <option>Other</option>
+              </select>
+              <button class="btn btn-primary" type="submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+                Search
+              </button>
+            </form>
+
+            <div class="hero-cta">
+              <a class="btn btn-light btn-lg" href="/report.html?type=lost">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Report Lost Item
+              </a>
+              <a class="btn btn-outline btn-lg" href="/report.html?type=found" style="--btn-fg:#fff; border-color: rgba(255,255,255,.35)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                  <path d="M4 12.5l5 5L20 6.5" />
+                </svg>
+                Report Found Item
+              </a>
+            </div>
+
+            <div class="hero-note">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M4 12.5l5 5L20 6.5" />
+                </svg>
+                Free for everyone on campus
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />
+                </svg>
+                Contact details stay private
+              </span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="float-card c1">
+              <span class="thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                  <rect x="4" y="5" width="16" height="11" rx="2" />
+                  <path d="M2 19h20" />
+                </svg>
+              </span>
+              <div>
+                <strong>Dell laptop found</strong>
+                <span>CS Block · 2 hours ago</span>
+              </div>
+            </div>
+            <div class="float-card c2">
+              <span class="thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                  <rect x="2.5" y="5" width="19" height="14" rx="3" />
+                  <circle cx="8.5" cy="11" r="2" />
+                  <path d="M5.5 16.5c.6-1.6 1.7-2.3 3-2.3s2.4.7 3 2.3M14.5 10h4M14.5 13.5h3" />
+                </svg>
+              </span>
+              <div>
+                <strong>ID card returned</strong>
+                <span>Claim accepted · 1 day ago</span>
+              </div>
+            </div>
+            <div class="float-card c3">
+              <span class="thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                  <circle cx="8" cy="8" r="4" />
+                  <path d="M11 11l9 9M17 17l2-2M14.5 14.5l2-2" />
+                </svg>
+              </span>
+              <div>
+                <strong>Hostel keys found</strong>
+                <span>Basketball court · 3 days ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------ stats ------------------------------- -->
+      <section class="stats-strip">
+        <div class="container">
+          <div class="stats-card">
+            <div class="stat">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+              </div>
+              <div class="stat-value" data-stat="totalLost">0</div>
+              <div class="stat-label">Lost items reported</div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M4 12.5l5 5L20 6.5" />
+                </svg>
+              </div>
+              <div class="stat-value" data-stat="totalFound">0</div>
+              <div class="stat-label">Found items posted</div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </div>
+              <div class="stat-value" data-stat="returned">0</div>
+              <div class="stat-label">Successfully returned</div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <circle cx="9" cy="8" r="3.5" />
+                  <path d="M2.5 21a6.5 6.5 0 0113 0" />
+                  <path d="M16 5.5a3.5 3.5 0 010 6.6M18 21a6.4 6.4 0 00-2-4.6" />
+                </svg>
+              </div>
+              <div class="stat-value" data-stat="users">0</div>
+              <div class="stat-label">Campus members</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------------------------- recent items -------------------------- -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Latest activity</span>
+              <h2>Recently reported items</h2>
+              <p>Fresh reports from around the campus. Recognise something? Open the item and claim it.</p>
+            </div>
+            <div class="tabs" id="recentTabs" role="tablist">
+              <button class="tab active" data-tab="lost" type="button" role="tab">Lost items</button>
+              <button class="tab" data-tab="found" type="button" role="tab">Found items</button>
+            </div>
+          </div>
+
+          <div class="items-grid" id="recentGrid"></div>
+
+          <div class="text-center mt-3">
+            <a class="btn btn-outline btn-lg" href="/browse.html">
+              View all items
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                <path d="M4 12h15" />
+                <path d="M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------------------------- categories ---------------------------- -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Browse by type</span>
+              <h2>What did you lose or find?</h2>
+              <p>Jump straight to the category you care about — from electronics to hostel keys.</p>
+            </div>
+          </div>
+          <div class="cat-grid" id="catGrid"></div>
+        </div>
+      </section>
+
+      <!-- --------------------------- how it works --------------------------- -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">How FindIt works</span>
+              <h2>Three steps to get your item back</h2>
+            </div>
+          </div>
+          <div class="grid grid-3">
+            <div class="step">
+              <div class="step-num">1</div>
+              <h3>Report the item</h3>
+              <p class="muted">
+                Create a free account and fill in a short form — item name, category, date,
+                location and a photo. It takes less than a minute.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <h3>Search &amp; match</h3>
+              <p class="muted">
+                Filter by category, location and date, or search by keyword. Every listing shows
+                where and when the item was last seen.
+              </p>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <h3>Claim &amp; collect</h3>
+              <p class="muted">
+                Submit proof of ownership. Once the finder accepts your claim, the item is marked
+                as returned and you can arrange the hand-over.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------- CTA -------------------------------- -->
+      <section class="section-tight">
+        <div class="container">
+          <div class="cta-band">
+            <div>
+              <h2>Found something that isn't yours?</h2>
+              <p>
+                Posting a found item takes a minute and could make someone's day. Your contact
+                details stay hidden until you choose to share them.
+              </p>
+            </div>
+            <div class="row">
+              <a class="btn btn-light btn-lg" href="/report.html?type=found">Report a found item</a>
+              <a class="btn btn-outline btn-lg" href="/register.html" style="--btn-fg:#fff; border-color: rgba(255,255,255,.4)">
+                Create account
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>

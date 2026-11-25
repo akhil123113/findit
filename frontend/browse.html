@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse items — FindIt</title>
+    <meta name="description" content="Search and filter all lost and found items reported on campus." />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+            <span>Browse items</span>
+          </nav>
+          <h1>Browse lost &amp; found items</h1>
+          <p>
+            Every item reported on campus, in one place. Use the filters to narrow by category,
+            location or date — or search by keyword.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container browse-layout">
+          <!-- ------------------------------ filters ------------------------------ -->
+          <aside class="card card-pad filters" aria-label="Filters">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                <path d="M3 5h18M6 12h12M10 19h4" />
+              </svg>
+              Filter items
+            </h3>
+
+            <form id="filterForm">
+              <div class="form-group">
+                <label for="fSearch">Keyword</label>
+                <input class="input" id="fSearch" name="q" type="search" placeholder="Laptop, wallet, keys…" />
+              </div>
+
+              <div class="form-group">
+                <label for="fCategory">Category</label>
+                <select class="select" id="fCategory" name="category">
+                  <option value="">All categories</option>
+                  <option>Electronics</option>
+                  <option>Books</option>
+                  <option>ID Cards</option>
+                  <option>Wallets</option>
+                  <option>Keys</option>
+                  <option>Bags</option>
+                  <option>Accessories</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Status</label>
+                <div class="chip-row" id="typeChips">
+                  <button class="chip active" type="button" data-type="">All</button>
+                  <button class="chip" type="button" data-type="lost">Lost</button>
+                  <button class="chip" type="button" data-type="found">Found</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fLocation">Location</label>
+                <input class="input" id="fLocation" name="location" type="text" placeholder="Library, canteen…" />
+              </div>
+
+              <div class="field-row">
+                <div class="form-group">
+                  <label for="fFrom">From date</label>
+                  <input class="input" id="fFrom" name="from" type="date" />
+                </div>
+                <div class="form-group">
+                  <label for="fTo">To date</label>
+                  <input class="input" id="fTo" name="to" type="date" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fSort">Sort by</label>
+                <select class="select" id="fSort" name="sort">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="date">Item date</option>
+                  <option value="views">Most viewed</option>
+                </select>
+              </div>
+
+              <div class="stack" style="gap: 8px">
+                <button class="btn btn-primary btn-block" type="submit">Apply filters</button>
+                <button class="btn btn-outline btn-block" type="button" id="clearFilters">Clear all</button>
+              </div>
+            </form>
+          </aside>
+
+          <!-- ------------------------------ results ------------------------------ -->
+          <div>
+            <div class="results-bar">
+              <div>
+                <strong id="resultCount">Loading…</strong>
+                <span class="muted small" id="resultSub"></span>
+              </div>
+              <div class="row">
+                <a class="btn btn-outline btn-sm" href="/report.html?type=lost">Report lost</a>
+                <a class="btn btn-primary btn-sm" href="/report.html?type=found">Report found</a>
+              </div>
+            </div>
+
+            <div class="active-filters" id="activeFilters"></div>
+            <div class="items-grid" id="resultsGrid"></div>
+            <div id="paginationSlot"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/browse.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My dashboard — FindIt</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+            <span>Dashboard</span>
+          </nav>
+          <h1 id="dashTitle">My dashboard</h1>
+          <p>Track your reports, review claim requests and manage everything in one place.</p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container dash-layout">
+          <aside class="card dash-nav" aria-label="Dashboard sections">
+            <div class="dash-user">
+              <strong id="dashUserName">Loading…</strong>
+              <span id="dashUserEmail"></span>
+            </div>
+            <div class="dash-links" id="dashLinks">
+              <button type="button" data-panel="overview" class="active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7.5" height="7.5" rx="2" /><rect x="13.5" y="3" width="7.5" height="7.5" rx="2" /><rect x="3" y="13.5" width="7.5" height="7.5" rx="2" /><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" /></svg>
+                Overview
+              </button>
+              <button type="button" data-panel="lost">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+                My lost items <span class="count" id="countLost">0</span>
+              </button>
+              <button type="button" data-panel="found">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5" /></svg>
+                My found items <span class="count" id="countFound">0</span>
+              </button>
+              <button type="button" data-panel="claims">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9V7a2 2 0 012-2h14a2 2 0 012 2v2a3 3 0 000 6v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a3 3 0 000-6z" /><path d="M12 7v10" /></svg>
+                My claims <span class="count" id="countClaims">0</span>
+              </button>
+              <button type="button" data-panel="received">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h5l1.5 3h5L16 12h5" /><path d="M5 5h14l2 7v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5l2-7z" /></svg>
+                Claim requests <span class="count" id="countReceived">0</span>
+              </button>
+              <button type="button" data-panel="notifications">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 9a6 6 0 10-12 0c0 5-2 6-2 6h16s-2-1-2-6z" /><path d="M10.3 20a2 2 0 003.4 0" /></svg>
+                Notifications <span class="count" id="countNotif">0</span>
+              </button>
+            </div>
+          </aside>
+
+          <div>
+            <!-- overview -->
+            <section class="panel active" id="panel-overview">
+              <div class="panel-head">
+                <h2>Overview</h2>
+                <div class="row">
+                  <a class="btn btn-outline btn-sm" href="/report.html?type=lost">Report lost</a>
+                  <a class="btn btn-primary btn-sm" href="/report.html?type=found">Report found</a>
+                </div>
+              </div>
+              <div class="mini-stats" id="overviewStats">
+                <div class="mini-stat"><strong>0</strong><span>Lost items</span></div>
+                <div class="mini-stat"><strong>0</strong><span>Found items</span></div>
+                <div class="mini-stat"><strong>0</strong><span>Returned</span></div>
+                <div class="mini-stat"><strong>0</strong><span>Pending claims</span></div>
+              </div>
+              <div class="card card-pad">
+                <h3 style="font-size:1.05rem">Latest from your reports</h3>
+                <div id="overviewActivity" class="mt-2"></div>
+              </div>
+            </section>
+
+            <!-- my lost -->
+            <section class="panel" id="panel-lost">
+              <div class="panel-head">
+                <h2>My lost items</h2>
+                <a class="btn btn-primary btn-sm" href="/report.html?type=lost">+ Report a lost item</a>
+              </div>
+              <div id="lostList"></div>
+            </section>
+
+            <!-- my found -->
+            <section class="panel" id="panel-found">
+              <div class="panel-head">
+                <h2>My found items</h2>
+                <a class="btn btn-primary btn-sm" href="/report.html?type=found">+ Report a found item</a>
+              </div>
+              <div id="foundList"></div>
+            </section>
+
+            <!-- claims sent -->
+            <section class="panel" id="panel-claims">
+              <div class="panel-head"><h2>My claim requests</h2></div>
+              <div id="claimsList"></div>
+            </section>
+
+            <!-- claims received -->
+            <section class="panel" id="panel-received">
+              <div class="panel-head"><h2>Claims on my items</h2></div>
+              <div id="receivedList"></div>
+            </section>
+
+            <!-- notifications -->
+            <section class="panel" id="panel-notifications">
+              <div class="panel-head">
+                <h2>Notifications</h2>
+                <button class="btn btn-outline btn-sm" type="button" id="markAllRead">Mark all as read</button>
+              </div>
+              <div id="notifList"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

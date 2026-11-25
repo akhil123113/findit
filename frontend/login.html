@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in — FindIt</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="login">
+    <div id="site-header"></div>
+
+    <main class="auth-wrap">
+      <aside class="auth-aside">
+        <a class="brand" href="/" style="color: #fff; margin-bottom: 28px">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+          </span>
+          <span>FindIt<small style="color: rgba(255,255,255,.55)">Lost &amp; Found Portal</small></span>
+        </a>
+        <h2>Welcome back to your campus lost &amp; found.</h2>
+        <p>
+          Log in to report items, track your claims and get notified the moment someone finds
+          what you lost.
+        </p>
+        <ul class="auth-points">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 12.5l5 5L20 6.5" />
+            </svg>
+            Report lost and found items in under a minute
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 12.5l5 5L20 6.5" />
+            </svg>
+            Claim items with proof of ownership
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 12.5l5 5L20 6.5" />
+            </svg>
+            Get notified about matching reports
+          </li>
+        </ul>
+      </aside>
+
+      <section class="auth-main">
+        <div class="auth-card">
+          <h1 id="authHeading">Log in to FindIt</h1>
+          <p class="sub" id="authSub">Use your campus email address and password.</p>
+
+          <div class="demo-box">
+            <strong>Demo accounts (after seeding)</strong>
+            Student: <code>akhil@findit.edu</code> / <code>Student@123</code><br />
+            Admin: <code>admin@findit.edu</code> / <code>Admin@123</code>
+          </div>
+
+          <div class="alert hidden" id="authAlert" role="alert"></div>
+
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="email">Email address <span class="req">*</span></label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@findit.edu" autocomplete="email" required />
+              <div class="field-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password <span class="req">*</span></label>
+              <div class="input-group">
+                <input class="input" id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required />
+                <button class="toggle-pass" type="button" data-toggle="password" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <div class="field-error"></div>
+            </div>
+
+            <div class="row" style="justify-content: space-between; margin-bottom: 20px">
+              <label class="checkbox">
+                <input type="checkbox" id="remember" checked />
+                <span>Keep me signed in</span>
+              </label>
+              <a class="small" href="/forgot-password.html">Forgot password?</a>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg" type="submit" id="loginSubmit">Log in</button>
+          </form>
+
+          <p class="auth-foot">
+            New to FindIt? <a href="/register.html">Create a free account</a>
+          </p>
+          <p class="auth-foot" style="margin-top: 6px">
+            <a href="/login.html?admin=1" id="adminLink">Administrator login →</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer" style="margin-top: 0"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

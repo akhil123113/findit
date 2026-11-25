@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin dashboard — FindIt</title>
+    <meta name="robots" content="noindex" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+            <span>Admin</span>
+          </nav>
+          <h1>Administrator dashboard</h1>
+          <p>Moderate reports, manage accounts and keep the portal trustworthy.</p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container">
+          <div id="adminGate" class="hidden"></div>
+
+          <div class="dash-layout" id="adminLayout">
+            <aside class="card dash-nav" aria-label="Admin sections">
+              <div class="dash-user">
+                <strong id="adminName">Admin</strong>
+                <span id="adminEmail"></span>
+              </div>
+              <div class="dash-links" id="adminLinks">
+                <button type="button" data-panel="overview" class="active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7.5" height="7.5" rx="2" /><rect x="13.5" y="3" width="7.5" height="7.5" rx="2" /><rect x="3" y="13.5" width="7.5" height="7.5" rx="2" /><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" /></svg>
+                  Overview
+                </button>
+                <button type="button" data-panel="items">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13" /><circle cx="4" cy="6" r="1" /><circle cx="4" cy="12" r="1" /><circle cx="4" cy="18" r="1" /></svg>
+                  Item reports <span class="count" id="badgeItems">0</span>
+                </button>
+                <button type="button" data-panel="pending">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7.5V12l3 2" /></svg>
+                  Approval queue <span class="count" id="badgePending">0</span>
+                </button>
+                <button type="button" data-panel="users">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 21a6.5 6.5 0 0113 0" /><path d="M16 5.5a3.5 3.5 0 010 6.6M18 21a6.4 6.4 0 00-2-4.6" /></svg>
+                  Users <span class="count" id="badgeUsers">0</span>
+                </button>
+                <button type="button" data-panel="claims">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9V7a2 2 0 012-2h14a2 2 0 012 2v2a3 3 0 000 6v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a3 3 0 000-6z" /><path d="M12 7v10" /></svg>
+                  Claims <span class="count" id="badgeClaims">0</span>
+                </button>
+                <button type="button" data-panel="reports">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 21V4" /><path d="M5 4h10l-1.5 3.5L15 11H5" /></svg>
+                  Flagged <span class="count" id="badgeReports">0</span>
+                </button>
+                <button type="button" data-panel="messages">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12a8.5 8.5 0 01-8.5 8.5H8L3 21l1.3-4.2A8.5 8.5 0 1121 12z" /></svg>
+                  Messages <span class="count" id="badgeMessages">0</span>
+                </button>
+              </div>
+            </aside>
+
+            <div>
+              <!-- overview -->
+              <section class="panel active" id="panel-overview">
+                <div class="panel-head">
+                  <h2>Website statistics</h2>
+                  <button class="btn btn-outline btn-sm" type="button" id="refreshBtn">
+                    Refresh
+                  </button>
+                </div>
+                <div class="mini-stats" id="adminStats"></div>
+                <div class="grid grid-2">
+                  <div class="card card-pad">
+                    <h3 style="font-size:1rem">Needs your attention</h3>
+                    <div class="stack mt-2" style="gap:10px" id="attentionList"></div>
+                  </div>
+                  <div class="card card-pad">
+                    <h3 style="font-size:1rem">Quick actions</h3>
+                    <div class="stack mt-2" style="gap:10px">
+                      <button class="btn btn-outline btn-block" type="button" data-goto="pending">Review pending reports</button>
+                      <button class="btn btn-outline btn-block" type="button" data-goto="reports">Review flagged listings</button>
+                      <button class="btn btn-outline btn-block" type="button" data-goto="users">Manage user accounts</button>
+                      <button class="btn btn-outline btn-block" type="button" data-goto="messages">Read contact messages</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- all items -->
+              <section class="panel" id="panel-items">
+                <div class="panel-head">
+                  <h2>All item reports</h2>
+                  <input class="input" id="itemSearch" type="search" placeholder="Search title, owner, location…" style="max-width: 280px" />
+                </div>
+                <div class="chip-row mb-2" id="itemStatusChips">
+                  <button class="chip active" type="button" data-status="">All</button>
+                  <button class="chip" type="button" data-status="pending">Pending</button>
+                  <button class="chip" type="button" data-status="active">Active</button>
+                  <button class="chip" type="button" data-status="returned">Returned</button>
+                  <button class="chip" type="button" data-status="rejected">Rejected</button>
+                  <button class="chip" type="button" data-status="removed">Removed</button>
+                </div>
+                <div id="adminItems"></div>
+              </section>
+
+              <!-- approval queue -->
+              <section class="panel" id="panel-pending">
+                <div class="panel-head">
+                  <h2>Approval queue</h2>
+                  <span class="small muted">Reports submitted while auto-approval is off</span>
+                </div>
+                <div id="pendingItems"></div>
+              </section>
+
+              <!-- users -->
+              <section class="panel" id="panel-users">
+                <div class="panel-head">
+                  <h2>User accounts</h2>
+                  <input class="input" id="userSearch" type="search" placeholder="Search name, email, ID…" style="max-width: 280px" />
+                </div>
+                <div id="adminUsers"></div>
+              </section>
+
+              <!-- claims -->
+              <section class="panel" id="panel-claims">
+                <div class="panel-head">
+                  <h2>All claim requests</h2>
+                  <select class="select" id="claimFilter" style="max-width: 200px">
+                    <option value="">All statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </div>
+                <div id="adminClaims"></div>
+              </section>
+
+              <!-- flagged -->
+              <section class="panel" id="panel-reports">
+                <div class="panel-head"><h2>Flagged listings</h2></div>
+                <div id="adminReports"></div>
+              </section>
+
+              <!-- messages -->
+              <section class="panel" id="panel-messages">
+                <div class="panel-head"><h2>Contact messages</h2></div>
+                <div id="adminMessages"></div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "findit-lost-and-found-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FindIt - a full-stack Lost & Found portal for colleges (Node.js, Express, MongoDB, vanilla JS frontend)",
+  "scripts": {
+    "postinstall": "npm --prefix backend install",
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev",
+    "seed": "npm --prefix backend run seed",
+    "seed:reset": "npm --prefix backend run seed:reset"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

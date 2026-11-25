@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report an item — FindIt</title>
+    <meta name="description" content="Report a lost or found item on the FindIt campus portal." />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6ca8' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+            <span id="crumbLabel">Report an item</span>
+          </nav>
+          <h1 id="pageTitle">Report a lost item</h1>
+          <p id="pageSubtitle">
+            Tell us what you lost and where. The more detail you add, the easier it is for the
+            finder to recognise it.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-tight">
+        <div class="container" style="max-width: 900px">
+          <div class="tabs mb-3" id="typeTabs" role="tablist" aria-label="Item type">
+            <button class="tab active" type="button" data-type="lost">I lost something</button>
+            <button class="tab" type="button" data-type="found">I found something</button>
+          </div>
+
+          <div class="form-card">
+            <div class="alert hidden" id="formAlert" role="alert"></div>
+
+            <form id="itemForm" novalidate>
+              <div class="form-group">
+                <label for="title">Item name <span class="req">*</span></label>
+                <input
+                  class="input"
+                  id="title"
+                  name="title"
+                  type="text"
+                  maxlength="90"
+                  placeholder="e.g. Black Dell laptop, Student ID card, Bunch of keys"
+                  required
+                />
+                <div class="hint">Keep it short and descriptive — this is what people search for.</div>
+                <div class="field-error"></div>
+              </div>
+
+              <div class="field-row">
+                <div class="form-group">
+                  <label for="category">Category <span class="req">*</span></label>
+                  <select class="select" id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option>Electronics</option>
+                    <option>Books</option>
+                    <option>ID Cards</option>
+                    <option>Wallets</option>
+                    <option>Keys</option>
+                    <option>Bags</option>
+                    <option>Accessories</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="field-error"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="dateLostFound" id="dateLabel">Date lost <span class="req">*</span></label>
+                  <input class="input" id="dateLostFound" name="dateLostFound" type="date" required />
+                  <div class="field-error"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Location <span class="req">*</span></label>
+                <input
+                  class="input"
+                  id="location"
+                  name="location"
+                  type="text"
+                  maxlength="120"
+                  placeholder="e.g. Central Library, Reading Room 2"
+                  required
+                />
+                <div class="hint" id="locationHint">Where exactly did you last see the item?</div>
+                <div class="field-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description <span class="req">*</span></label>
+                <textarea
+                  class="textarea"
+                  id="description"
+                  name="description"
+                  maxlength="1500"
+                  placeholder="Colour, brand, distinguishing marks, what was inside…"
+                  required
+                ></textarea>
+                <div class="hint">Avoid sharing private details like your full ID number.</div>
+                <div class="field-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="image">Item photo (optional)</label>
+                <div class="upload-box">
+                  <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp,image/gif" />
+                  <div class="up-ico">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                      <path d="M12 16V4" />
+                      <path d="M7.5 8.5L12 4l4.5 4.5" />
+                      <path d="M4 16v2.5A2.5 2.5 0 006.5 21h11A2.5 2.5 0 0020 18.5V16" />
+                    </svg>
+                  </div>
+                  <strong>Click to upload or drag a photo here</strong>
+                  <span>JPG, PNG, WEBP or GIF · up to 5 MB</span>
+                </div>
+                <div class="preview-wrap hidden" id="imagePreview"></div>
+              </div>
+
+              <h3 style="margin-top:28px">How can people reach you?</h3>
+              <p class="small muted">Your contact details are masked for visitors and only revealed to logged-in users.</p>
+
+              <div class="field-row">
+                <div class="form-group">
+                  <label for="contactEmail">Contact email <span class="req">*</span></label>
+                  <input class="input" id="contactEmail" name="contactEmail" type="email" placeholder="you@findit.edu" required />
+                  <div class="field-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone">Contact phone (optional)</label>
+                  <input class="input" id="contactPhone" name="contactPhone" type="tel" placeholder="+91 98765 43210" />
+                  <div class="field-error"></div>
+                </div>
+              </div>
+
+              <div class="row" style="gap:12px; margin-top:8px">
+                <button class="btn btn-primary btn-lg" type="submit" id="submitBtn">
+                  Submit report
+                </button>
+                <a class="btn btn-outline btn-lg" href="/browse.html">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/report.js"></script>
+  </body>
+</html>
